@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Venta de Utilería Estudiantil</title>
+    <style>
+      body {
+        background: #DDDAD0;
+      }
+      .navbar {
+        background: #3C3633;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        border-radius: 0 0 24px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: #FFD700;
+      }
+      .landing {
+        text-align: center;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+      }
+      .landing h1 {
+        color: #3C3633;
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      .landing p {
+        color: #747264;
+        font-size: 1.15rem;
+        margin-bottom: 2rem;
+      }
+      .categories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      .category {
+        background: #fff;
+        color: #747264;
+        border: none;
+        border-radius: 24px;
+        box-shadow: -8px -8px 24px #f5f3ea;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+      }
+      .category:hover {
+        background: #f4f6fb;
+        color: #3C3633;
+        box-shadow: -12px -12px 32px #f5f3ea;
+      }
+      .logo-neumorph {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        padding: 0;
+        background: none;
+        border-radius: 32px;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .logo-img {
+        display: block;
+        border-radius: 24px;
+        box-shadow: 0 0 32px 0 #222;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+      }
+      @media (max-width: 900px) {
+        .navbar {
+          padding: 1rem;
+        }
+        .categories {
+          gap: 1rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .navbar {
+          flex-direction: column;
+          padding: 0.7rem;
+        }
+        .categories {
+          flex-direction: column;
+          gap: 0.7rem;
+        }
+        .category {
+          width: 90%;
+          margin: 0 auto;
+        }
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">EDUTOOLS</div>
+        <ul class="nav-links">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Categorías</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+    <header class="landing">
+        <h1>Encuentra todo para tu carrera</h1>
+        <p>Selecciona tu área de estudio y descubre los mejores productos</p>
+        <div class="categories">
+            <button class="category" onclick="location.href='categories/ingenieria.html'">Ingeniería</button>
+            <button class="category" onclick="location.href='categories/medicina.html'">Medicina</button>
+            <button class="category" onclick="location.href='categories/derecho.html'">Derecho</button>
+            <button class="category" onclick="location.href='categories/arquitectura.html'">Arquitectura</button>
+            <button class="category" onclick="location.href='categories/administracion.html'">Administración</button>
+        </div>
+        <br>
+        <!-- Logo below categories -->
+        <div class="logo-neumorph">
+            <img src="img/Copilot_20250824_174504.png" alt="EDUTOOLS Logo" class="logo-img">
+        </div>
+    </header>
+</body>
+</html>
