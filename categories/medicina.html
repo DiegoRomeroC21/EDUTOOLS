@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bazar de Arquitectura</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      background: #DDDAD0;
+    }
+
+    .navbar {
+      background: #3C3633; /* Updated navbar color */
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-radius: 0 0 24px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #FFD700;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      padding: 0 0.2rem 2rem 2.2rem;
+    }
+    .card-item {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow:
+        8px 8px 24px #c6c3b8,
+        -8px -8px 24px #f5f3ea;
+      border: none;
+      max-width: 78%;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #747264; /* Updated dark color */
+      padding: 1.5rem;
+      transition: 
+        box-shadow 0.3s cubic-bezier(.25,.8,.25,1),
+        transform 0.3s cubic-bezier(.25,.8,.25,1);
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .card-item:hover {
+      box-shadow:
+        12px 12px 32px #c6c3b8,
+        -12px -12px 32px #f5f3ea;
+      transform: translateY(-8px) scale(1.03);
+      z-index: 2;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: bold;
+      margin-bottom: 0.7rem;
+      text-align: center;
+      color: #747264; /* Updated dark color */
+    }
+    .card-category {
+      font-size: 0.95rem;
+      color: #747264; /* Updated dark color */
+      background: #f4f6fb;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      margin-bottom: 0.7rem;
+    }
+    @media (max-width: 900px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .advanced-filter-bar {
+      background: #fff;
+      border-radius: 24px;
+      margin: 2rem 2rem 2.5rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 1rem;
+    }
+    .filter-form {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 180px;
+    }
+    .filter-group label {
+      font-size: 1rem;
+      color: #747264; /* Updated dark color */
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+    .filter-group input,
+    .filter-group select {
+      color: #747264; /* Updated dark color */
+      border: none;
+      background: #f4f6fb;
+      border-radius: 16px;
+      padding: 0.7rem 1rem;
+      font-size: 1rem;
+      outline: none;
+      margin-bottom: 0.1rem;
+    }
+    .filter-group input:focus,
+    .filter-group select:focus {
+      background: #e9ecf3;
+    }
+    .apply-btn {
+      background: #747264; /* Updated dark color */
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 0.7rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1.6rem;
+      transition: background 0.2s;
+    }
+    .apply-btn:hover {
+      background: #3C3633;
+    }
+    @media (max-width: 900px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 2rem; /* More space between cards */
+    padding: 0 0.5rem 2rem 0.5rem;
+  }
+  .card-item {
+    max-width: 380px; /* Cards become smaller */
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 0.5rem;
+  }
+}
+    @media (max-width: 600px) {
+      .filter-form {
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .advanced-filter-bar {
+        margin: 0.5rem;
+        padding: 0.5rem;
+      }
+    }
+    .card-item .later-btn {
+      margin-top: 0.8rem;
+      margin-bottom: 0.4rem;
+      background: #f4f6fb;
+      color: #747264; /* Updated dark color */
+      border: none;
+      border-radius: 18px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .card-item .later-btn:hover {
+      background: #e9ecf3;
+    }
+    .card-item .ask-btn {
+      background: #747264; /* Updated dark color */
+      color: #fff;
+      border: none;
+      border-radius: 18px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 0.7rem;
+      transition: background 0.2s;
+    }
+    .card-item .ask-btn:hover {
+      background: #3C3633;
+    }
+    .card-item .card-price {
+      margin-top: auto;
+      font-size: 1.05rem;
+      color: #747264; /* Updated dark color */
+      font-weight: bold;
+      background: #f4f6fb;
+      border-radius: 12px;
+      padding: 0.4rem 0.8rem;
+      margin-top: 1rem;
+      text-align: center;
+      width: 100%;
+    }
+    .card-img {
+      display: block;
+      margin: 0.0rem auto 0.0rem auto;
+      max-width: 230px;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #f4f6fb;
+    }
+    .category-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      color: #747264;
+      margin: 1.5rem 0 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">EDUTOOLS</div>
+    <ul class="nav-links">
+      <li><a href="../main.html">Inicio</a></li>
+      <li><a href="#">Categorías</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- Advanced Filter Bar -->
+  <div class="advanced-filter-bar">
+    <form class="filter-form" autocomplete="off">
+      <div class="filter-group">
+        <label for="search">Buscar (título)</label>
+        <input type="text" id="search" placeholder="Ej. regla, escuadra">
+      </div>
+      <div class="filter-group">
+        <label for="category">Categoría</label>
+        <select id="category">
+          <option>Todos</option>
+          <option>Instrumentos</option>
+          <option>Libros</option>
+          <option>Accesorios</option>
+          <option>Papelería</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="estado">Estado</label>
+        <select id="estado">
+          <option>Todos</option>
+          <option>Nuevo</option>
+          <option>Usado</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="min-price">Precio mínimo (MXN)</label>
+        <input type="number" id="min-price" min="0">
+      </div>
+      <div class="filter-group">
+        <label for="max-price">Precio máximo (MXN)</label>
+        <input type="number" id="max-price" min="0">
+      </div>
+      <div class="filter-group">
+        <button type="submit" class="apply-btn">Aplicar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Category Title -->
+  <h2 class="category-title">MEDICINA</h2>
+  <br>
+  <br>
+  <!-- 3x3 Grid of Items -->
+  <div class="grid-container">
+    <div class="card-item" data-category="Instrumentos">
+      <div class="card-title">Estetoscopio</div>
+      <div class="card-category">Instrumentos</div>
+      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd2b?auto=format&fit=crop&w=300&q=80" alt="Estetoscopio" class="card-img">
+      <div>Indispensable para exámenes clínicos.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $450 MXN</div>
+    </div>
+    <div class="card-item" data-category="Instrumentos">
+      <div class="card-title">Tensiómetro Digital</div>
+      <div class="card-category">Instrumentos</div>
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80" alt="Tensiómetro Digital" class="card-img">
+      <div>Para medición precisa de presión arterial.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $600 MXN</div>
+    </div>
+    <div class="card-item" data-category="Libros">
+      <div class="card-title">Atlas de Anatomía Humana</div>
+      <div class="card-category">Libros</div>
+      <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=300&q=80" alt="Atlas de Anatomía Humana" class="card-img">
+      <div>Referencia esencial para estudiantes de medicina.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $520 MXN</div>
+    </div>
+    <div class="card-item" data-category="Accesorios">
+      <div class="card-title">Bata Médica</div>
+      <div class="card-category">Accesorios</div>
+      <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=300&q=80" alt="Bata Médica" class="card-img">
+      <div>Comodidad y protección en prácticas clínicas.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $250 MXN</div>
+    </div>
+    <div class="card-item" data-category="Papelería">
+      <div class="card-title">Cuaderno de Apuntes Clínicos</div>
+      <div class="card-category">Papelería</div>
+      <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=300&q=80" alt="Cuaderno de Apuntes Clínicos" class="card-img">
+      <div>Para registrar observaciones y diagnósticos.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $90 MXN</div>
+    </div>
+    <div class="card-item" data-category="Instrumentos">
+      <div class="card-title">Termómetro Digital</div>
+      <div class="card-category">Instrumentos</div>
+      <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=300&q=80" alt="Termómetro Digital" class="card-img">
+      <div>Medición rápida y precisa de temperatura.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $180 MXN</div>
+    </div>
+    <div class="card-item" data-category="Accesorios">
+      <div class="card-title">Bolsa para Material Médico</div>
+      <div class="card-category">Accesorios</div>
+      <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=300&q=80" alt="Bolsa para Material Médico" class="card-img">
+      <div>Transporta tus instrumentos y libros con seguridad.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $320 MXN</div>
+    </div>
+    <div class="card-item" data-category="Papelería">
+      <div class="card-title">Marcadores para Diagnóstico</div>
+      <div class="card-category">Papelería</div>
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80" alt="Marcadores para Diagnóstico" class="card-img">
+      <div>Set de colores para resaltar información clínica.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $60 MXN</div>
+    </div>
+    <div class="card-item" data-category="Accesorios">
+      <div class="card-title">Mochila para Estudiante de Medicina</div>
+      <div class="card-category">Accesorios</div>
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=300&q=80" alt="Mochila para Estudiante de Medicina" class="card-img">
+      <div>Espacio y comodidad para tus herramientas y libros.</div>
+      <button class="later-btn">Agregar para más tarde</button>
+      <button class="ask-btn">Preguntar por disponibilidad</button>
+      <div class="card-price">Precio estimado: $600 MXN</div>
+    </div>
+  </div>
+</body>
+</html>
